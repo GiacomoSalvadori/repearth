@@ -11,6 +11,7 @@ public class ElementManager : MonoBehaviour
 
     private float centerX;
     private float centerY;
+    public List<GameObject> nodes;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,33 @@ public class ElementManager : MonoBehaviour
             GameObject go = GameObject.Instantiate(prefab, pos, Quaternion.identity);
             float angleRotation = (Mathf.Atan2(pos.y - centerY, pos.x - centerX) * -180 / Mathf.PI + 90) * -1;
             go.transform.localRotation = Quaternion.Euler(0, 0, angleRotation);
+            go.AddComponent<UpdateState>();
+            nodes.Add(go);
+        }
+
+        SetupNode();
+    }
+
+    void SetupNode()
+    {
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            UpdateState state = nodes[i].GetComponent<UpdateState>();
+            if (i == 0)
+            {
+                state.backNode = nodes[nodes.Count - 1];
+                state.nextNode = nodes[i + 1];
+            }
+            else if (i == nodes.Count - 1)
+            {
+                state.nextNode = nodes[0];
+                state.backNode = nodes[i - 1];
+            }
+            else
+            {
+                state.backNode = nodes[i - 1];
+                state.nextNode = nodes[i + 1];
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ public class ManagerSpawn : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             GameObject go = GameObject.Instantiate(enemy, placePoint.transform.position, Quaternion.identity) as GameObject;
-            go.transform.LookAt(this.transform.position);
+            //go.transform.LookAt(this.transform.position);
             float angle =  (Mathf.Atan2(placePoint.transform.position.y - startPoint.transform.position.y, placePoint.transform.position.x - startPoint.transform.position.x) * -180 / Mathf.PI  + 90) * -1;
             go.transform.localRotation = Quaternion.Euler(0, 0, angle);
         }
