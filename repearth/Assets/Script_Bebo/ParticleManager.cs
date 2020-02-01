@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
 {
-    private ParticleSystem.MainModule particleSys;
+    private ParticleSystem particleSys;
+    private Material particleMaterial;
+    private ParticleSystem.MainModule particleMain;
     [SerializeField] Color startingColor;
 
     public Color Color
     {
-        get => particleSys.startColor.color;
-        set
-        {
-            particleSys.startColor = value;
-        }
+        get => particleMain.startColor.color;
+        set => particleMain.startColor = value;
+    }
+
+    public Material Material
+    {
+        get => particleMaterial;
+        set => particleMaterial = value;
     }
 
     // Start is called before the first frame update
     void Awake()
     {
-        particleSys = GetComponent<ParticleSystem>().main;
-        Color = startingColor; 
+        particleSys = GetComponent<ParticleSystem>();
+        particleMaterial = GetComponent<ParticleSystemRenderer>().material;
+        particleMain = particleSys.main;
+        Color = startingColor;
     }
 }
