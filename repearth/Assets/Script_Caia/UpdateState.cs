@@ -5,42 +5,59 @@ using UnityEngine;
 
 public class UpdateState : MonoBehaviour
 {
-    private StateColor state;
+    public StateColor state;
     public GameObject backNode;
     public GameObject nextNode;
     public ColorRules rules;
 
     private SpriteRenderer sprite;
     private int waitTime;
+    private bool isCall;
 
     // Start is called before the first frame update
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         waitTime = 4;
+        isCall = false;
+        state = StateColor.CL_GREY;
     }
     
     // Update is called once per frame
     void Update()
     {
-       StartCoroutine(UpdateColor(sprite.color));    
+        if (!isCall && state!=StateColor.CL_GREY)
+        {
+            isCall = true;
+            StartCoroutine(UpdateColor(state));
+        }
+         
     }
 
-    IEnumerator UpdateColor(Colors state)
+    IEnumerator UpdateColor(StateColor state)
     {
-       setColor(state);
-       yield return new WaitForSeconds(waitTime);
+        Debug.Log("A");
+        SetColor(state);
+
+        yield return new WaitForSeconds(waitTime);
+       
 
         if(checkIfUpdate(backNode))
             StartCoroutine(backNode.GetComponent<UpdateState>().UpdateColor(state));
         if (checkIfUpdate(nextNode))
             StartCoroutine(nextNode.GetComponent<UpdateState>().UpdateColor(state));
+
+        isCall = false;
     }
 
     bool checkIfUpdate(GameObject node)
     {
         if(rules)
-            return rules.CheckStrenght(state, node.GetComponent<UpdateState>().state);
+        {
+            bool r = rules.CheckStrenght(state, node.GetComponent<UpdateState>().state);
+            Debug.Log("chekIfUpdate -> " + r);
+            return r;
+        }
 
         return false;
     }

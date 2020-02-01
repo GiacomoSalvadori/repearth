@@ -10,8 +10,9 @@ public class ColorRules : ScriptableObject
     public bool CheckStrenght(StateColor color, StateColor other)
     {
         ColorRel rel = rels.Find(x => x.color == color);
-        
-        return rel.strongWith.Contains(other);
+        bool r = rel.strongWith.Contains(other);
+        Debug.Log(r);
+        return r;
     }
 
     public Color RetrieveHex(StateColor color)
