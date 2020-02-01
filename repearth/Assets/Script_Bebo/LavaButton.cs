@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class LavaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public ParticleSystem particleSys;
+    [SerializeField] Animator volcanoAnimator;
     private ParticleSystem.EmissionModule particleEmission;
     private ParticleSystem.CollisionModule particleCollision;
 
@@ -27,6 +28,7 @@ public class LavaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (canClick)
         {
+            volcanoAnimator.SetBool("isErupting", true);
             particleEmission.enabled = true;
             particleCollision.dampen = 0;
         }
@@ -35,6 +37,7 @@ public class LavaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         canClick = false;
+        volcanoAnimator.SetBool("isErupting", false);
         particleEmission.enabled = false;
         particleCollision.dampen = 0.2f;
     }

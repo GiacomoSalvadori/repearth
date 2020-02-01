@@ -36,11 +36,17 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(CharacterDialogue dialogue)
     {
-        Debug.Log("Qui");
+        dialogueWindow.SetActive(true);
+        MoveDialogueWindow(true);
         if (dialogue) {
-            Debug.Log("Qui 2");
             StartCoroutine(VisualizeDialogue(dialogue));
         }
+    }
+
+    private void MoveDialogueWindow(bool goUp)
+    {
+        float destination = goUp ? 0.0f : -320.0f;
+        dialogueWindow.GetComponent<RectTransform>().DOAnchorPosY(destination, 1.0f, false).OnComplete(() => dialogueWindow.SetActive(goUp));
     }
 
     private void SetImage(Sprite img)
@@ -67,8 +73,6 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator VisualizeDialogue(CharacterDialogue dialogue)
     {
-        Debug.Log("Evvai");
-        dialogueWindow.SetActive(true);
         SetName(dialogue.character.name);
         SetImage(dialogue.character.img);
         int pieceIndex = 0;
@@ -79,6 +83,7 @@ public class DialogueManager : MonoBehaviour
             pieceIndex++;
         }
         yield return new WaitUntil(() => nextPiece);
-        dialogueWindow.SetActive(false);
+        MoveDialogueWindow(false);
+        //dialogueWindow.SetActive(false);
     }
 }
