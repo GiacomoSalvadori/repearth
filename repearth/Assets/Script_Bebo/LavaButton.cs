@@ -36,6 +36,6 @@ public class LavaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         canClick = false;
         particleEmission.enabled = false;
-        particleCollision.dampen = 1;
+        particleCollision.dampen = 0.2f;
     }
 }
