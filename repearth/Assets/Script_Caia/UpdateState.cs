@@ -24,7 +24,7 @@ public class UpdateState : MonoBehaviour
     {
         
         sprite = GetComponent<SpriteRenderer>();
-        waitTime = 20;
+        waitTime = 4;
         isCall = false;
         SetColor(StateColor.CL_GREEN);
         //child = this.gameObject.transform.GetComponentInChildren<ParticleManager>();
@@ -42,21 +42,18 @@ public class UpdateState : MonoBehaviour
          
     }
 
-    private void TouchedByLava(){
-        Debug.Log("piece "+name);
-    }
-
     IEnumerator UpdateColor(StateColor state)
     {
         SetColor(state);
-
+        
         yield return new WaitForSeconds(waitTime);
-       
 
-        if(checkIfUpdate(backNode))
-            StartCoroutine(backNode.GetComponent<UpdateState>().UpdateColor(state));
+        if (checkIfUpdate(backNode))
+            backNode.GetComponent<UpdateState>().SetColor(state);
+            //StartCoroutine(backNode.GetComponent<UpdateState>().UpdateColor(state));
         if (checkIfUpdate(nextNode))
-            StartCoroutine(nextNode.GetComponent<UpdateState>().UpdateColor(state));
+            nextNode.GetComponent<UpdateState>().SetColor(state);
+            //StartCoroutine(nextNode.GetComponent<UpdateState>().UpdateColor(state));
 
         isCall = false;
     }
@@ -77,21 +74,21 @@ public class UpdateState : MonoBehaviour
         state = newState;
         sprite.color = rules.RetrieveHex(newState);
 
-        if(newState == StateColor.CL_GREEN)
-        {
-            blackParticles.gameObject.SetActive(false);
-            greenParticles.gameObject.SetActive(true);
-        }
-        else if(newState == StateColor.CL_BLACK)
-        {
-            greenParticles.gameObject.SetActive(false);
-            blackParticles.gameObject.SetActive(true);
-        }
-        else
-        {
-            greenParticles.gameObject.SetActive(false);
-            blackParticles.gameObject.SetActive(false);
-        }
+        //if(newState == StateColor.CL_GREEN)
+        //{
+        //    blackParticles.gameObject.SetActive(false);
+        //    greenParticles.gameObject.SetActive(true);
+        //}
+        //else if(newState == StateColor.CL_BLACK)
+        //{
+        //    greenParticles.gameObject.SetActive(false);
+        //    blackParticles.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    greenParticles.gameObject.SetActive(false);
+        //    blackParticles.gameObject.SetActive(false);
+        //}
     }
 
     private void OnParticleCollision(GameObject other)

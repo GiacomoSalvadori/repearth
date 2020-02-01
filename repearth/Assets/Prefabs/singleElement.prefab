@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5f0fba2c5842344ae9cdc07c8b815a07, type: 3}
   m_Color: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 0.22, y: 0.47}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-137872756096675148
@@ -102,6 +102,7 @@ MonoBehaviour:
   rules: {fileID: 11400000, guid: 48ebd668212434c40bf749b8ddf3e338, type: 2}
   greenParticles: {fileID: 3143864115871369923}
   blackParticles: {fileID: 6840573451499943620}
+  rotationSpeed: 10
 --- !u!61 &2417384333741864492
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8214661388520389560
 Transform:
   m_ObjectHideFlags: 0
@@ -4925,7 +4926,7 @@ Transform:
   m_GameObject: {fileID: 4266360880056714958}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.018, y: -0.218, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 227061283133693265}
   m_RootOrder: 1
@@ -6378,7 +6379,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: 82939b50e50602741a084e8ded386697, type: 3}
+    - sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     flipU: 0
     flipV: 0
   VelocityModule:
