@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd97e3d090e723c44b971c63f79c19f0, type: 3}
   m_Name: Dialogue_Intro
   m_EditorClassIdentifier: 
+  character: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  pieces:
+  - Ciao!
+  - Benvenuto in questo fantastico gioco!

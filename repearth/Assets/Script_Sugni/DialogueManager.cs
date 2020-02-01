@@ -11,27 +11,35 @@ public class DialogueManager : MonoBehaviour
     public GameObject messageContainer;
     public GameObject imgContainer;
     public GameObject nameContainer;
+    public CharacterDialogue d;
     public delegate void DialogueEvent();
     public DialogueEvent OnClickWindow;
     private bool nextPiece;
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        nextPiece = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.L)) {
+            StartDialogue(d);
+        }
+    }
+
+    public void OnWindowClick()
+    {
+        nextPiece = true;
     }
 
     public void StartDialogue(CharacterDialogue dialogue)
     {
+        Debug.Log("Qui");
         if (dialogue) {
-
+            Debug.Log("Qui 2");
+            StartCoroutine(VisualizeDialogue(dialogue));
         }
     }
 
@@ -59,6 +67,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator VisualizeDialogue(CharacterDialogue dialogue)
     {
+        Debug.Log("Evvai");
         dialogueWindow.SetActive(true);
         SetName(dialogue.character.name);
         SetImage(dialogue.character.img);
