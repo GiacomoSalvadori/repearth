@@ -72,8 +72,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 5f0fba2c5842344ae9cdc07c8b815a07, type: 3}
   m_Color: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 0.22, y: 0.47}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-137872756096675148
@@ -102,6 +102,7 @@ MonoBehaviour:
   rules: {fileID: 11400000, guid: 48ebd668212434c40bf749b8ddf3e338, type: 2}
   greenParticles: {fileID: 3143864115871369923}
   blackParticles: {fileID: 6840573451499943620}
+  rotationSpeed: 10
 --- !u!61 &2417384333741864492
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8214661388520389560
 Transform:
   m_ObjectHideFlags: 0
