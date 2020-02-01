@@ -36,7 +36,6 @@ public class UpdateState : MonoBehaviour
 
     IEnumerator UpdateColor(StateColor state)
     {
-        Debug.Log("A");
         SetColor(state);
 
         yield return new WaitForSeconds(waitTime);

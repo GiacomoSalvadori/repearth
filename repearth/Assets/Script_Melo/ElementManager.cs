@@ -49,20 +49,46 @@ public class ElementManager : MonoBehaviour
             }
             else if(percentBlack < minPercentBlack)
             {
-                
+                RandomSpawn(StateColor.CL_BLACK);
+            }
+            else if(percentGreen < minPercentGreen)
+            {
+                RandomSpawn(StateColor.CL_GREEN);
             }
         }
     }
 
-    void RandomSpawn()
+    void RandomSpawn(StateColor colorToSpawn)
     {
         int index = Random.Range(0, nodes.Count);
 
         UpdateState state = nodes[index].GetComponent<UpdateState>();
 
-        if(state.state == StateColor.CL_GREEN)
+        switch (colorToSpawn)
         {
-            state.state = StateColor.CL_BLACK;
+            case StateColor.CL_BLACK:
+                if (state.state == StateColor.CL_GREEN)
+                {
+                    state.SetColor(colorToSpawn);
+                    return;
+                }
+                else
+                {
+                    RandomSpawn(colorToSpawn);
+                }
+                break;
+
+            case StateColor.CL_GREEN:
+                if (state.state == StateColor.CL_GREY)
+                {
+                    state.SetColor(colorToSpawn);
+                    return;
+                }
+                else
+                {
+                    RandomSpawn(colorToSpawn);
+                }
+                break;
         }
     }
 
