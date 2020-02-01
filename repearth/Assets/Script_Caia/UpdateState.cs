@@ -15,6 +15,8 @@ public class UpdateState : MonoBehaviour
     private bool isCall;
     public ParticleManager child;
 
+    public int rotationSpeed = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class UpdateState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.RotateAround(new Vector3(0,0,0), Vector3.forward, rotationSpeed * Time.deltaTime);
         if (!isCall && state!=StateColor.CL_GREY)
         {
             isCall = true;
