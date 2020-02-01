@@ -13,6 +13,7 @@ public class UpdateState : MonoBehaviour
     private SpriteRenderer sprite;
     private int waitTime;
     private bool isCall;
+    public ParticleManager child;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class UpdateState : MonoBehaviour
         waitTime = 4;
         isCall = false;
         SetColor(StateColor.CL_GREEN);
+        //child = this.gameObject.transform.GetComponentInChildren<ParticleManager>();
     }
     
     // Update is called once per frame
@@ -64,6 +66,7 @@ public class UpdateState : MonoBehaviour
     {
         state = newState;
         sprite.color = rules.RetrieveHex(newState);
+        child.Color = sprite.color;
     }
 }
 

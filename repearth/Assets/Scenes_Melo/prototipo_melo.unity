@@ -423,3 +423,10 @@ MonoBehaviour:
   numberOfObjects: 90
   centerX: 0
   centerY: -0.17
+  scanTime: 5
+  minPercentBlack: 5
+  minPercentGreen: 5
+  countBlack: 0
+  percentBlack: 0
+  countGreen: 0
+  percentGreen: 0

@@ -31,11 +31,13 @@ public class ElementManager : MonoBehaviour
     void Start()
     {
         GetPoints();
+
         centerY = 0;
         centerX = 0;
         countBlack = 0;
         countGreen = 0;
-        timer = 0;
+        timer = scanTime - 0.3f;
+
     }
 
     // Update is called once per frame
@@ -46,7 +48,6 @@ public class ElementManager : MonoBehaviour
         {
             timer = 0;
             Debug.Log("START");
-            CountBlackGreen();
             if(countGreen == 0 || countBlack == 0)
             {
                 //TODO: lose
@@ -60,7 +61,6 @@ public class ElementManager : MonoBehaviour
             {
                 RandomSpawn(StateColor.CL_GREEN);
             }
-
             CountBlackGreen();
         }
     }
@@ -69,7 +69,11 @@ public class ElementManager : MonoBehaviour
     {
         int index = Random.Range(0, nodes.Count);
 
-        UpdateState state = nodes[index].GetComponent<UpdateState>();
+        UpdateState state = null;
+        if(nodes[index].GetComponent<UpdateState>())
+        {
+            state = nodes[index].GetComponent<UpdateState>();
+        }
 
         switch (colorToSpawn)
         {
@@ -77,11 +81,6 @@ public class ElementManager : MonoBehaviour
                 if (state.state == StateColor.CL_GREEN)
                 {
                     state.SetColor(colorToSpawn);
-                    return;
-                }
-                else
-                {
-                    RandomSpawn(colorToSpawn);
                 }
                 break;
 
@@ -89,11 +88,6 @@ public class ElementManager : MonoBehaviour
                 if (state.state == StateColor.CL_GREY)
                 {
                     state.SetColor(colorToSpawn);
-                    return;
-                }
-                else
-                {
-                    RandomSpawn(colorToSpawn);
                 }
                 break;
         }
@@ -143,19 +137,23 @@ public class ElementManager : MonoBehaviour
         countGreen = 0;
         foreach(var n in nodes)
         {
-            UpdateState elem = n.GetComponent<UpdateState>();
-
-            if (elem.state == StateColor.CL_BLACK)
+            UpdateState elem;
+            if(n.GetComponent<UpdateState>() != null)
             {
-                countBlack++;
-            }
-            if (elem.state == StateColor.CL_GREEN)
-            {
-                countGreen++;
+                elem = n.GetComponent<UpdateState>();
+                if (elem.state == StateColor.CL_BLACK)
+                {
+                    countBlack++;
+                }
+                if (elem.state == StateColor.CL_GREEN)
+                {
+                    countGreen++;
+                }
             }
         }
 
-        percentBlack = (countBlack / numberOfObjects) * 100;
-        percentGreen = (countGreen / numberOfObjects) * 100;
+        percentBlack = ((float)countBlack / numberOfObjects) * 100;
+        percentGreen = ((float)countGreen / numberOfObjects) * 100;
+
     }
 }
