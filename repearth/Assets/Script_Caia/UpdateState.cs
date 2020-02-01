@@ -20,7 +20,7 @@ public class UpdateState : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         waitTime = 4;
         isCall = false;
-        state = StateColor.CL_GREY;
+        state = StateColor.CL_GREEN;
     }
     
     // Update is called once per frame

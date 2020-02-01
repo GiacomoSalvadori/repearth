@@ -7,12 +7,20 @@ public class ElementManager : MonoBehaviour
     public float radius;
 
     public GameObject prefab;
-    public int numberOfObjects = 20;
+    public int numberOfObjects;
 
     public float centerX;
     public float centerY;
 
+    public float scanTime;
+
     private List<GameObject> nodes = new List<GameObject>();
+    private int countBlack;
+    private float percentBlack;
+    private int countGreen;
+    private float percentGreen;
+
+    private float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +28,25 @@ public class ElementManager : MonoBehaviour
         GetPoints();
         centerY = 0;
         centerX = 0;
+        countBlack = 0;
+        countGreen = 0;
+        timer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if(timer > scanTime)
+        {
+            CountBlackGreen();
+            timer = 0;
+            if(countGreen == 0 || countBlack == 0)
+            {
+                //TODO: lose
+            }
+            else if()
+        }
     }
 
     void GetPoints()
@@ -65,5 +86,26 @@ public class ElementManager : MonoBehaviour
                 state.nextNode = nodes[i + 1];
             }
         }
+    }
+
+    void CountBlackGreen()
+    {
+        foreach(var n in nodes)
+        {
+            UpdateState elem = n.GetComponent<UpdateState>();
+
+            if (elem.state == StateColor.CL_BLACK)
+            {
+                countBlack++;
+            }
+            if (elem.state == StateColor.CL_GREEN)
+            {
+                countGreen++;
+
+            }
+        }
+
+        percentBlack = (countBlack / numberOfObjects) * 100;
+        percentGreen = (countGreen / numberOfObjects) * 100;
     }
 }
