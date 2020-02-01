@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParticleManager : MonoBehaviour
 {
     private ParticleSystem.MainModule particleSys;
+    [SerializeField] Color startingColor;
 
     public Color Color
     {
@@ -19,5 +20,6 @@ public class ParticleManager : MonoBehaviour
     void Awake()
     {
         particleSys = GetComponent<ParticleSystem>().main;
+        Color = startingColor; 
     }
 }
