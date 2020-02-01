@@ -13,13 +13,16 @@ public class UpdateState : MonoBehaviour
     private SpriteRenderer sprite;
     private int waitTime;
     private bool isCall;
-    public ParticleManager child;
+    public ParticleManager greenParticles;
+    public ParticleManager blackParticles;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        
         sprite = GetComponent<SpriteRenderer>();
-        waitTime = 4;
+        waitTime = 20;
         isCall = false;
         SetColor(StateColor.CL_GREEN);
         //child = this.gameObject.transform.GetComponentInChildren<ParticleManager>();
@@ -34,6 +37,10 @@ public class UpdateState : MonoBehaviour
             StartCoroutine(UpdateColor(state));
         }
          
+    }
+
+    private void TouchedByLava(){
+        Debug.Log("piece "+name);
     }
 
     IEnumerator UpdateColor(StateColor state)
@@ -66,7 +73,30 @@ public class UpdateState : MonoBehaviour
     {
         state = newState;
         sprite.color = rules.RetrieveHex(newState);
-        child.Color = sprite.color;
+
+        if(newState == StateColor.CL_GREEN)
+        {
+            blackParticles.gameObject.SetActive(false);
+            greenParticles.gameObject.SetActive(true);
+        }
+        else if(newState == StateColor.CL_BLACK)
+        {
+            greenParticles.gameObject.SetActive(false);
+            blackParticles.gameObject.SetActive(true);
+        }
+        else
+        {
+            greenParticles.gameObject.SetActive(false);
+            blackParticles.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if(other.CompareTag("Lava"))
+        {
+            SetColor(StateColor.CL_GREY);
+        }
     }
 }
 

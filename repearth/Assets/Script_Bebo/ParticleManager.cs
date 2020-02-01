@@ -29,4 +29,6 @@ public class ParticleManager : MonoBehaviour
         particleMain = particleSys.main;
         Color = startingColor;
     }
+
+
 }

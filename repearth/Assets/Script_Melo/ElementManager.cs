@@ -100,6 +100,7 @@ public class ElementManager : MonoBehaviour
             float angle = i * Mathf.PI * 2 / numberOfObjects;
             Vector3 pos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
             GameObject go = GameObject.Instantiate(prefab, pos, Quaternion.identity);
+            go.name = "SingleElement_"+i.ToString();
             float angleRotation = (Mathf.Atan2(pos.y - centerY, pos.x - centerX) * -180 / Mathf.PI + 90) * -1;
             go.transform.localRotation = Quaternion.Euler(0, 0, angleRotation);
             nodes.Add(go);
