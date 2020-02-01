@@ -51,12 +51,14 @@ public class UpdateState : MonoBehaviour
         SetColor(state);
 
         yield return new WaitForSeconds(waitTime);
-       
 
-        if(checkIfUpdate(backNode))
-            StartCoroutine(backNode.GetComponent<UpdateState>().SetColor(state));
+
+        if (checkIfUpdate(backNode))
+            backNode.GetComponent<UpdateState>().SetColor(state);
+        //StartCoroutine(backNode.GetComponent<UpdateState>().SetColor(state));
         if (checkIfUpdate(nextNode))
-            StartCoroutine(nextNode.GetComponent<UpdateState>().SetColor(state));
+            nextNode.GetComponent<UpdateState>().SetColor(state);
+            //StartCoroutine(nextNode.GetComponent<UpdateState>().SetColor(state));
 
         isCall = false;
     }
