@@ -13,6 +13,8 @@ public class ElementManager : MonoBehaviour
     public float centerY;
 
     public float scanTime;
+    public float minPercentBlack;
+    public float minPercentGreen;
 
     private List<GameObject> nodes = new List<GameObject>();
     private int countBlack;
@@ -45,7 +47,22 @@ public class ElementManager : MonoBehaviour
             {
                 //TODO: lose
             }
-            else if()
+            else if(percentBlack < minPercentBlack)
+            {
+                
+            }
+        }
+    }
+
+    void RandomSpawn()
+    {
+        int index = Random.Range(0, nodes.Count);
+
+        UpdateState state = nodes[index].GetComponent<UpdateState>();
+
+        if(state.state == StateColor.CL_GREEN)
+        {
+            state.state = StateColor.CL_BLACK;
         }
     }
 
