@@ -11,7 +11,6 @@ public class ColorRules : ScriptableObject
     {
         ColorRel rel = rels.Find(x => x.color == color);
         bool r = rel.strongWith.Contains(other);
-        Debug.Log(r);
         return r;
     }
 

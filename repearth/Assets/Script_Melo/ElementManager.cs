@@ -16,11 +16,14 @@ public class ElementManager : MonoBehaviour
     public float minPercentBlack;
     public float minPercentGreen;
 
+
     private List<GameObject> nodes = new List<GameObject>();
-    private int countBlack;
-    private float percentBlack;
-    private int countGreen;
-    private float percentGreen;
+    [Header("BLACK")]
+    public int countBlack;
+    public float percentBlack;
+    [Header("GREEN")]
+    public int countGreen;
+    public float percentGreen;
 
     private float timer;
 
@@ -41,20 +44,24 @@ public class ElementManager : MonoBehaviour
         timer += Time.deltaTime;
         if(timer > scanTime)
         {
-            CountBlackGreen();
             timer = 0;
+            Debug.Log("START");
+            CountBlackGreen();
             if(countGreen == 0 || countBlack == 0)
             {
                 //TODO: lose
             }
-            else if(percentBlack < minPercentBlack)
+
+            if(percentBlack < minPercentBlack)
             {
                 RandomSpawn(StateColor.CL_BLACK);
             }
-            else if(percentGreen < minPercentGreen)
+            if(percentGreen < minPercentGreen)
             {
                 RandomSpawn(StateColor.CL_GREEN);
             }
+
+            CountBlackGreen();
         }
     }
 
@@ -101,7 +108,6 @@ public class ElementManager : MonoBehaviour
             GameObject go = GameObject.Instantiate(prefab, pos, Quaternion.identity);
             float angleRotation = (Mathf.Atan2(pos.y - centerY, pos.x - centerX) * -180 / Mathf.PI + 90) * -1;
             go.transform.localRotation = Quaternion.Euler(0, 0, angleRotation);
-            go.AddComponent<UpdateState>();
             nodes.Add(go);
         }
 
@@ -133,6 +139,8 @@ public class ElementManager : MonoBehaviour
 
     void CountBlackGreen()
     {
+        countBlack = 0;
+        countGreen = 0;
         foreach(var n in nodes)
         {
             UpdateState elem = n.GetComponent<UpdateState>();
@@ -144,7 +152,6 @@ public class ElementManager : MonoBehaviour
             if (elem.state == StateColor.CL_GREEN)
             {
                 countGreen++;
-
             }
         }
 

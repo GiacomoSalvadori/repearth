@@ -20,7 +20,7 @@ public class UpdateState : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         waitTime = 4;
         isCall = false;
-        state = StateColor.CL_GREEN;
+        SetColor(StateColor.CL_GREEN);
     }
     
     // Update is called once per frame
@@ -54,7 +54,6 @@ public class UpdateState : MonoBehaviour
         if(rules)
         {
             bool r = rules.CheckStrenght(state, node.GetComponent<UpdateState>().state);
-            Debug.Log("chekIfUpdate -> " + r);
             return r;
         }
 
