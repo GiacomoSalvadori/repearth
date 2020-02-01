@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Colors { Green = "ACF243", Black = "000000", Grey = "808080"}
-public enum BlackStrengths { Green = "ACF243", Grey = "808080" }
-public enum GreenStrengths { Grey = "808080" }
 
 public class UpdateState : MonoBehaviour
 {
-    private Colors state;
-
+    private StateColor state;
     public GameObject backNode;
     public GameObject nextNode;
+    public ColorRules rules;
 
     private SpriteRenderer sprite;
     private int waitTime;
@@ -22,7 +19,7 @@ public class UpdateState : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         waitTime = 4;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -42,40 +39,16 @@ public class UpdateState : MonoBehaviour
 
     bool checkIfUpdate(GameObject node)
     {
-        switch (state)
-        {
-            case Colors.Black:
-                node.getState()
-            
-            case Colors.Green:
-                sprite.color = Colors.Green;
-        }
+        if(rules)
+            return rules.CheckStrenght(state, node.GetComponent<UpdateState>().state);
 
-        
+        return false;
     }
 
-    public getState()
-    {
-        return state;
-    }
-
-
-    public setColor(Colors newState)
+    public void SetColor(StateColor newState)
     {
         state = newState;
-
-        switch(state)
-        {
-            case Colors.Black :
-                sprite.color = Colors.Black;
-
-            case Colors.Green:
-                sprite.color = Colors.Green;
-
-            case Colors.Grey:
-                sprite.color = Colors.Grey;
-        }
-
+        sprite.color = rules.RetrieveHex(newState);
     }
 }
 

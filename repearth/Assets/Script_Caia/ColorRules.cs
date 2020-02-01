@@ -2,18 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu()]
+[CreateAssetMenu(fileName = "ColorRules", menuName = "Scripting/ColorRules", order = 3)]
 public class ColorRules : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<ColorRel> rels;
+
+    public bool CheckStrenght(StateColor color, StateColor other)
     {
+        ColorRel rel = rels.Find(x => x.color == color);
         
+        return rel.strongWith.Contains(other);
     }
 
-    // Update is called once per frame
-    void Update()
+    public Color RetrieveHex(StateColor color)
     {
-        
+        ColorRel rel = rels.Find(x => x.color == color);
+
+        return rel.colorHex;
     }
+}
+
+[System.Serializable]
+public struct ColorRel
+{
+    public StateColor color;
+    public Color colorHex;
+    public List<StateColor> strongWith;
 }
