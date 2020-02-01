@@ -19,7 +19,7 @@ public class UpdateState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(UpdateColor(sprite.color));
+        //StartCoroutine(UpdateColor(sprite.color));
     }
 
     IEnumerator UpdateColor(Color newColor)

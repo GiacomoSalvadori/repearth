@@ -9,9 +9,10 @@ public class ElementManager : MonoBehaviour
     public GameObject prefab;
     public int numberOfObjects = 20;
 
-    private float centerX;
-    private float centerY;
-    public List<GameObject> nodes;
+    public float centerX;
+    public float centerY;
+
+    private List<GameObject> nodes = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
