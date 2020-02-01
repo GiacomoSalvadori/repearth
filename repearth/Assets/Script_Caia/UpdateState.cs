@@ -54,9 +54,9 @@ public class UpdateState : MonoBehaviour
        
 
         if(checkIfUpdate(backNode))
-            StartCoroutine(backNode.GetComponent<UpdateState>().UpdateColor(state));
+            StartCoroutine(backNode.GetComponent<UpdateState>().SetColor(state));
         if (checkIfUpdate(nextNode))
-            StartCoroutine(nextNode.GetComponent<UpdateState>().UpdateColor(state));
+            StartCoroutine(nextNode.GetComponent<UpdateState>().SetColor(state));
 
         isCall = false;
     }

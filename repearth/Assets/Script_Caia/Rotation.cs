@@ -5,8 +5,6 @@ using UnityEngine;
 public class Rotation : MonoBehaviour
 {
     public float rotationSpeed = 10;
-    private float angle = 90;
-    public Vector3 center;
 
     // Start is called before the first frame update
     void Start()
