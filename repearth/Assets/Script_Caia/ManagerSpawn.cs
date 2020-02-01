@@ -25,7 +25,5 @@ public class ManagerSpawn : MonoBehaviour
             go.transform.localRotation = Quaternion.Euler(0, 0, angle);
         }
 
-
-
     }
 }
