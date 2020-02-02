@@ -16,6 +16,9 @@ public class ElementManager : MonoBehaviour
     public float minPercentBlack;
     public float minPercentGreen;
 
+    [Header("SPAWN MANAGER")]
+    public float spawnTimeGreen;
+    public float spawnTimeBlack;
 
     private List<GameObject> nodes = new List<GameObject>();
     [Header("BLACK")]
@@ -103,6 +106,13 @@ public class ElementManager : MonoBehaviour
             go.name = "SingleElement_"+i.ToString();
             float angleRotation = (Mathf.Atan2(pos.y - centerY, pos.x - centerX) * -180 / Mathf.PI + 90) * -1;
             go.transform.localRotation = Quaternion.Euler(0, 0, angleRotation);
+
+            if(go.GetComponent<UpdateState>() != null)
+            {
+                go.GetComponent<UpdateState>().spawnTimeGreen = spawnTimeGreen;
+                go.GetComponent<UpdateState>().spawnTimeBlack = spawnTimeBlack;
+            }
+
             nodes.Add(go);
         }
 

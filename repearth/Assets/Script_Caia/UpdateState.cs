@@ -10,8 +10,13 @@ public class UpdateState : MonoBehaviour
     public GameObject nextNode;
     public ColorRules rules;
 
+    [HideInInspector]
+    public float spawnTimeGreen;
+    [HideInInspector]
+    public float spawnTimeBlack;
+
+
     private SpriteRenderer sprite;
-    private int waitTime;
     private bool isCall;
     public ParticleManager greenParticles;
     public ParticleManager blackParticles;
@@ -24,7 +29,6 @@ public class UpdateState : MonoBehaviour
     {
         
         sprite = GetComponent<SpriteRenderer>();
-        waitTime = 4;
         isCall = false;
         SetColor(StateColor.CL_GREEN);
         //child = this.gameObject.transform.GetComponentInChildren<ParticleManager>();
@@ -46,7 +50,10 @@ public class UpdateState : MonoBehaviour
     {
         SetColor(state);
 
-        yield return new WaitForSeconds(waitTime);
+        if(state == StateColor.CL_GREEN)
+            yield return new WaitForSeconds(spawnTimeGreen);
+        else
+            yield return new WaitForSeconds(spawnTimeBlack);
 
 
         if (checkIfUpdate(backNode))
