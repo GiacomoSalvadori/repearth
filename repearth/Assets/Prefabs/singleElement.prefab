@@ -96,10 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e09518eef5bcb469c37372a2a576fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  state: 1
   backNode: {fileID: 0}
   nextNode: {fileID: 0}
   rules: {fileID: 11400000, guid: 48ebd668212434c40bf749b8ddf3e338, type: 2}
+  spawnTimeGreen: 0
+  spawnTimeBlack: 0
+  timeToGrey: 0
   greenParticles: {fileID: 3143864115871369923}
   blackParticles: {fileID: 6840573451499943620}
   rotationSpeed: 10

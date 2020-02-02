@@ -17,6 +17,9 @@ public class ElementManager : MonoBehaviour
     public float minPercentBlack;
     public float minPercentGreen;
 
+    public delegate void ElementState();
+    public ElementState OnGameReady;
+
     [Header("SPAWN MANAGER")]
     public float spawnTimeGreen;
     public float spawnTimeBlack;
@@ -24,6 +27,7 @@ public class ElementManager : MonoBehaviour
 
     private List<GameObject> nodes = new List<GameObject>();
     [Header("BLACK")]
+    public int StartGameBlack;
     public int countBlack;
     public float percentBlack;
     [Header("GREEN")]
@@ -37,6 +41,7 @@ public class ElementManager : MonoBehaviour
     {
         startGame = false;
         GetPoints();
+        SpawnStartBlack();
         countBlack = 0;
         countGreen = 0;
         timer = scanTime - 0.3f;
@@ -65,6 +70,18 @@ public class ElementManager : MonoBehaviour
         }
     }
 
+    void SpawnStartBlack()
+    {
+        for (int i = 0; i < StartGameBlack; i++)
+        {
+            System.Random rnd = new System.Random(Guid.NewGuid().GetHashCode());
+            int index = rnd.Next(0, nodes.Count);
+            Debug.Log("BLACK " + index);
+            nodes[index].GetComponent<SpriteRenderer>().color = Color.black;
+            nodes[index].GetComponent<UpdateState>().state = StateColor.CL_BLACK;
+        }
+    }
+
     void RandomSpawn(StateColor colorToSpawn)
     {
         System.Random rnd = new System.Random(Guid.NewGuid().GetHashCode());
@@ -81,7 +98,6 @@ public class ElementManager : MonoBehaviour
             case StateColor.CL_BLACK:
                 if (state.state == StateColor.CL_GREEN)
                 {
-                    Debug.Log("SPAWN BLACK");
                     state.SetColor(colorToSpawn);
                 }
                 break;
@@ -171,5 +187,9 @@ public class ElementManager : MonoBehaviour
     private void EnableEconomy()
     {
         startGame = true;
+        if(OnGameReady != null)
+        {
+            OnGameReady();
+        }
     }
 }

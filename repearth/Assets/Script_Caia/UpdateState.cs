@@ -19,9 +19,9 @@ public class UpdateState : MonoBehaviour
     public float timeToGrey;
 
     private SpriteRenderer sprite;
-    private bool isCall;
 
     private float timer;
+    private bool startExpansion;
 
     public ParticleManager greenParticles;
     public ParticleManager blackParticles;
@@ -32,38 +32,49 @@ public class UpdateState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        startExpansion = false;
+        GameObject.FindObjectOfType<ElementManager>().OnGameReady += Go;
         sprite = GetComponent<SpriteRenderer>();
-        isCall = false;
-        SetColor(StateColor.CL_GREEN);
+
+        if(state != StateColor.CL_BLACK)
+            sprite.color = rules.RetrieveHex(state);
+        
         timer = 0;
-        //child = this.gameObject.transform.GetComponentInChildren<ParticleManager>();
     }
-    
+
+
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
-        transform.RotateAround(new Vector3(0,0,0), Vector3.forward, rotationSpeed * Time.deltaTime);
-
-        switch (state)
+        transform.RotateAround(new Vector3(0, 0, 0), Vector3.forward, rotationSpeed * Time.deltaTime);
+        if (startExpansion)
         {
-            case StateColor.CL_BLACK:
-                if (timer > spawnTimeBlack)
-                {
-                    timer = 0;
-                    StartCoroutine(UpdateColor(state));
-                }
-                break;
-            case StateColor.CL_GREEN:
-                if (timer > spawnTimeGreen)
-                {
-                    timer = 0;
-                    StartCoroutine(UpdateColor(state));
-                }
-                break;
+            timer += Time.deltaTime;
+
+
+            switch (state)
+            {
+                case StateColor.CL_BLACK:
+                    if (timer > spawnTimeBlack)
+                    {
+                        timer = 0;
+                        StartCoroutine(UpdateColor(state));
+                    }
+                    break;
+                case StateColor.CL_GREEN:
+                    if (timer > spawnTimeGreen)
+                    {
+                        timer = 0;
+                        StartCoroutine(UpdateColor(state));
+                    }
+                    break;
+            }
         }
+    }
+
+    private void Go()
+    {
+        startExpansion = true;
     }
 
     IEnumerator UpdateColor(StateColor state)
@@ -83,7 +94,6 @@ public class UpdateState : MonoBehaviour
             nextNode.GetComponent<UpdateState>().SetColor(state);
             //StartCoroutine(nextNode.GetComponent<UpdateState>().SetColor(state));
 
-        isCall = false;
     }
 
     bool checkIfUpdate(GameObject node)
