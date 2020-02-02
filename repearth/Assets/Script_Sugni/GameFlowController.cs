@@ -93,6 +93,7 @@ public class GameFlowController : MonoBehaviour
     public void ReturnToLandpage()
     {
         GoToScene(0);
+        ResumeGame();
     }
 
     public bool IsNewGame()
