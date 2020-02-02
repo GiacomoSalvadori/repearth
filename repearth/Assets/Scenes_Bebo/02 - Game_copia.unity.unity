@@ -373,6 +373,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!330 &365183349 stripped
+ParticleSystemForceField:
+  m_CorrespondingSourceObject: {fileID: 5747234033931396205, guid: bbdb409986a15794eade9a3e79acf9d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 684273127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &468493561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,8 +1082,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 80.1}
-  m_SizeDelta: {x: 750, y: 820}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 750, y: 1334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1132657908
 MonoBehaviour:
@@ -1093,7 +1099,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSys: {fileID: 884166093}
   volcanoAnimator: {fileID: 941912549}
-  canClick: 0
 --- !u!114 &1132657909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1378,31 +1383,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1690403993008617363, guid: 9402a1a73359c5b45ac05c392d35c9bd,
+    - target: {fileID: 1690403993635651995, guid: 9402a1a73359c5b45ac05c392d35c9bd,
         type: 3}
-      propertyPath: m_Camera
+      propertyPath: ExternalForcesModule.influenceList.Array.data[0]
       value: 
-      objectReference: {fileID: 1781320034}
-    - target: {fileID: 1690403993008617363, guid: 9402a1a73359c5b45ac05c392d35c9bd,
-        type: 3}
-      propertyPath: m_PlaneDistance
-      value: 3.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690403993484641370, guid: 9402a1a73359c5b45ac05c392d35c9bd,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690403993484641370, guid: 9402a1a73359c5b45ac05c392d35c9bd,
-        type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690403993484641370, guid: 9402a1a73359c5b45ac05c392d35c9bd,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 365183349}
     - target: {fileID: 1690403993821619905, guid: 9402a1a73359c5b45ac05c392d35c9bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1772,8 +1757,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963914463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.18, z: -4.228486}
-  m_LocalScale: {x: 1.39, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -2.51, z: -4.228486}
+  m_LocalScale: {x: 1.39, y: 2.41, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10

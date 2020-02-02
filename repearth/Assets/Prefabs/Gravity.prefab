@@ -41,8 +41,8 @@ ParticleSystemForceField:
   m_Enabled: 1
   m_Parameters:
     m_Shape: 2
-    m_StartRange: 2.07
-    m_EndRange: 2.54
+    m_StartRange: 2.5400016
+    m_EndRange: 3.6999092
     m_Length: 3.6
     m_GravityFocus: 0
     m_RotationRandomness: {x: 0, y: 0}
@@ -208,7 +208,7 @@ ParticleSystemForceField:
     m_GravityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.035
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -524,5 +524,5 @@ ParticleSystemForceField:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_MultiplyDragByParticleSize: 0
+    m_MultiplyDragByParticleSize: 1
     m_MultiplyDragByParticleVelocity: 0

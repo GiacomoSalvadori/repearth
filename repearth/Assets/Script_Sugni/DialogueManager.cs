@@ -14,6 +14,8 @@ public class DialogueManager : MonoBehaviour
     public CharacterDialogue d;
     public delegate void DialogueEvent();
     public DialogueEvent OnClickWindow;
+    public DialogueEvent OnOpenWindow;
+    public DialogueEvent OnCloseWindow;
     private bool nextPiece;
     #endregion
 
@@ -38,6 +40,9 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueWindow.SetActive(true);
         MoveDialogueWindow(true);
+        if (OnOpenWindow != null) {
+            OnOpenWindow();
+        }
         if (dialogue) {
             StartCoroutine(VisualizeDialogue(dialogue));
         }
@@ -46,7 +51,19 @@ public class DialogueManager : MonoBehaviour
     private void MoveDialogueWindow(bool goUp)
     {
         float destination = goUp ? 0.0f : -320.0f;
-        dialogueWindow.GetComponent<RectTransform>().DOAnchorPosY(destination, 1.0f, false).OnComplete(() => dialogueWindow.SetActive(goUp));
+        if (!goUp) {
+            dialogueWindow.GetComponent<RectTransform>().DOAnchorPosY(destination, 1.0f, false).OnComplete(() => DisableWindow());
+        }
+        dialogueWindow.GetComponent<RectTransform>().DOAnchorPosY(destination, 1.0f, false);
+    }
+
+    private void DisableWindow()
+    {
+        if(OnCloseWindow != null) {
+            OnCloseWindow();
+        }
+
+        dialogueWindow.SetActive(false);
     }
 
     private void SetImage(Sprite img)
