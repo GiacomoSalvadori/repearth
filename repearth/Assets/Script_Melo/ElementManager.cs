@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ElementManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class ElementManager : MonoBehaviour
 
     public delegate void ElementState();
     public ElementState OnGameReady;
+    public ElementState OnGameEnd;
 
     [Header("SPAWN MANAGER")]
     public float spawnTimeGreen;
@@ -35,6 +37,12 @@ public class ElementManager : MonoBehaviour
     public float percentGreen;
     private float timer;
     private bool startGame;
+
+    [Header("Dialogues")]
+    public CharacterDialogue endAll;
+    public CharacterDialogue endBio;
+    public CharacterDialogue endBlack;
+
     
     // Start is called before the first frame update
     void Start()
@@ -42,8 +50,8 @@ public class ElementManager : MonoBehaviour
         startGame = false;
         GetPoints();
         SpawnStartBlack();
-        countBlack = 0;
-        countGreen = 0;
+        countBlack = StartGameBlack;
+        countGreen = nodes.Count - countBlack;
         timer = scanTime - 0.3f;
         FindObjectOfType<DialogueManager>().OnCloseWindow += EnableEconomy;
     }
@@ -55,8 +63,19 @@ public class ElementManager : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > scanTime) {
                 timer = 0;
-                if (countGreen == 0 || countBlack == 0) {
-                    //TODO: lose
+                if (countGreen == 0 || countBlack == 0) { // END GAME
+                    startGame = false;
+                    if (countGreen == 0 && countBlack == 0) {
+                        FindObjectOfType<DialogueManager>().StartDialogue(endAll);
+                    } else if (countGreen == 0) {
+                        FindObjectOfType<DialogueManager>().StartDialogue(endBio);
+                    } else if (countBlack == 0) {
+                        FindObjectOfType<DialogueManager>().StartDialogue(endBlack);
+                    }
+                    
+                    if (OnGameEnd != null) {
+                        OnGameEnd();
+                    }
                 }
 
                 if (percentBlack < minPercentBlack) {
@@ -187,9 +206,17 @@ public class ElementManager : MonoBehaviour
     private void EnableEconomy()
     {
         startGame = true;
-        if(OnGameReady != null)
+        FindObjectOfType<DialogueManager>().OnCloseWindow -= EnableEconomy;
+        FindObjectOfType<DialogueManager>().OnCloseWindow += BackToLandPage;
+        if (OnGameReady != null)
         {
             OnGameReady();
         }
+    }
+
+    private void BackToLandPage()
+    {
+        FindObjectOfType<DialogueManager>().OnCloseWindow -= BackToLandPage;
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }

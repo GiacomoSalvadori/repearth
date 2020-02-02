@@ -38,6 +38,7 @@ public class UpdateState : MonoBehaviour
         fxManager = transform.Find("FX").GetComponent<FxManager>();
         startExpansion = false;
         GameObject.FindObjectOfType<ElementManager>().OnGameReady += Go;
+        GameObject.FindObjectOfType<ElementManager>().OnGameEnd += End;
         sprite = GetComponent<SpriteRenderer>();
 
         if(state != StateColor.CL_BLACK)
@@ -54,7 +55,6 @@ public class UpdateState : MonoBehaviour
         if (startExpansion)
         {
             timer += Time.deltaTime;
-
 
             switch (state)
             {
@@ -80,6 +80,13 @@ public class UpdateState : MonoBehaviour
     {
         startExpansion = true;
     }
+
+    private void End()
+    {
+        startExpansion = false;
+    }
+
+
 
     IEnumerator UpdateColor(StateColor state)
     {

@@ -2645,17 +2645,20 @@ MonoBehaviour:
   numberOfObjects: 90
   centerX: 0
   centerY: -0.17
-  scanTime: 5
+  scanTime: 1
   minPercentBlack: 5
   minPercentGreen: 5
   spawnTimeGreen: 8
   spawnTimeBlack: 5
   timeToGrey: 1
-  StartGameBlack: 0
+  StartGameBlack: 2
   countBlack: 0
   percentBlack: 0
   countGreen: 0
   percentGreen: 0
+  endAll: {fileID: 11400000, guid: 0963b8e1c51c1d741b949d4f795b0a6c, type: 2}
+  endBio: {fileID: 11400000, guid: e95ccb7537249534791647e68a1eb6ff, type: 2}
+  endBlack: {fileID: 11400000, guid: 90c2b4363f1a1334fabecc16cff10de2, type: 2}
 --- !u!4 &1993690894
 Transform:
   m_ObjectHideFlags: 0

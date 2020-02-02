@@ -51,6 +51,16 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void StartDialogueEnd(CharacterDialogue dialogue)
+    {
+        dialogueWindow.SetActive(true);
+        MoveDialogueWindow(true);
+
+        if (dialogue) {
+            StartCoroutine(VisualizeDialogue(dialogue));
+        }
+    }
+
     private void MoveDialogueWindow(bool goUp)
     {
         float destination = goUp ? 0.0f : -320.0f;
