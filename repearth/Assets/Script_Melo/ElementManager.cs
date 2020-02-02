@@ -20,6 +20,7 @@ public class ElementManager : MonoBehaviour
     [Header("SPAWN MANAGER")]
     public float spawnTimeGreen;
     public float spawnTimeBlack;
+    public float timeToGrey;
 
     private List<GameObject> nodes = new List<GameObject>();
     [Header("BLACK")]
@@ -112,6 +113,7 @@ public class ElementManager : MonoBehaviour
             {
                 go.GetComponent<UpdateState>().spawnTimeGreen = spawnTimeGreen;
                 go.GetComponent<UpdateState>().spawnTimeBlack = spawnTimeBlack;
+                go.GetComponent<UpdateState>().timeToGrey = timeToGrey;
             }
 
             nodes.Add(go);

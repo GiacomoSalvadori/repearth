@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 
 public class UpdateState : MonoBehaviour
@@ -14,7 +15,8 @@ public class UpdateState : MonoBehaviour
     public float spawnTimeGreen;
     [HideInInspector]
     public float spawnTimeBlack;
-
+    [HideInInspector]
+    public float timeToGrey;
 
     private SpriteRenderer sprite;
     private bool isCall;
@@ -98,14 +100,23 @@ public class UpdateState : MonoBehaviour
     public void SetColor(StateColor newState)
     {
         state = newState;
-        sprite.color = rules.RetrieveHex(newState);
+        //sprite.color = rules.RetrieveHex(newState);
+        if (newState != StateColor.CL_RED)
+            sprite.DOColor(rules.RetrieveHex(newState), 1.5f);
+        else
+            sprite.color = rules.RetrieveHex(newState);
     }
+
 
     private void OnParticleCollision(GameObject other)
     {
         if(other.CompareTag("Lava"))
         {
-            SetColor(StateColor.CL_GREY);
+            if(state != StateColor.CL_RED)
+            {
+                SetColor(StateColor.CL_RED);
+                sprite.DOColor(rules.RetrieveHex(StateColor.CL_GREY), timeToGrey).OnComplete(() => SetColor(StateColor.CL_GREY));
+            }
         }
     }
 }
@@ -113,5 +124,6 @@ public class UpdateState : MonoBehaviour
 public enum StateColor {
     CL_BLACK,
     CL_GREEN,
-    CL_GREY
+    CL_GREY,
+    CL_RED
 }

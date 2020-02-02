@@ -22,3 +22,6 @@ MonoBehaviour:
   - color: 2
     colorHex: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     strongWith: 
+  - color: 3
+    colorHex: {r: 1, g: 0, b: 0.21223831, a: 1}
+    strongWith: 
