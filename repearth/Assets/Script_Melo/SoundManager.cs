@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
 {
 
     public SoundClass[] sounds;
-    public PlayerSounds[] characterSounds;
+    //public PlayerSounds[] characterSounds;
 
     static SoundManager()
     {
@@ -37,32 +37,34 @@ public class SoundManager : MonoBehaviour
         {
             sound.source = gameObject.AddComponent<AudioSource>();
             sound.source.clip = sound.clip;
+            sound.source.playOnAwake = false;
             sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
+            //sound.source.pitch = sound.pitch;
             sound.source.loop = sound.loop;
         }
 
-        for (int i = 0; i < characterSounds.Length; i++)
-        {
-            foreach (SoundClass sound in characterSounds[i].personalEffect)
-            {
-                sound.source = gameObject.AddComponent<AudioSource>();
-                sound.source.clip = sound.clip;
-                sound.source.volume = sound.volume;
-                sound.source.pitch = sound.pitch;
-                sound.source.loop = sound.loop;
-            }
-        }
+        //for (int i = 0; i < characterSounds.Length; i++)
+        //{
+        //    foreach (SoundClass sound in characterSounds[i].personalEffect)
+        //    {
+        //        sound.source = gameObject.AddComponent<AudioSource>();
+        //        sound.source.clip = sound.clip;
+        //        sound.source.volume = sound.volume;
+        //        sound.source.pitch = sound.pitch;
+        //        sound.source.loop = sound.loop;
+        //    }
+        //}
     }
 
     private void Start()
     {
         Play("Intro");
-        Play("Main Menu");
+        //Play("Main Menu");
     }
 
     public void Play(string clipName)
     {
+        Debug.Log("Play " + clipName);
         SoundClass s = Array.Find(sounds, sound => sound.clipName == clipName);
         if (s == null)
         {
@@ -83,46 +85,46 @@ public class SoundManager : MonoBehaviour
         s.source.Stop();
     }
 
-    public void PlayCharacterSound(string clipName)
-    {
-        string playerName = clipName.Split('_')[0];
-        PlayerSounds player = Array.Find(characterSounds, pl => pl.name == playerName);
+    //public void PlayCharacterSound(string clipName)
+    //{
+    //    string playerName = clipName.Split('_')[0];
+    //    PlayerSounds player = Array.Find(characterSounds, pl => pl.name == playerName);
 
-        if (player != null)
-        {
-            foreach (SoundClass sound in player.personalEffect)
-            {
-                if (sound.clipName == clipName)
-                {
-                    sound.source.Play();
-                    return;
-                }
-            }
-        }
+    //    if (player != null)
+    //    {
+    //        foreach (SoundClass sound in player.personalEffect)
+    //        {
+    //            if (sound.clipName == clipName)
+    //            {
+    //                sound.source.Play();
+    //                return;
+    //            }
+    //        }
+    //    }
 
-        Debug.LogWarning("Clip: " + clipName + " not found. Check the name");
-        return;
-    }
+    //    Debug.LogWarning("Clip: " + clipName + " not found. Check the name");
+    //    return;
+    //}
 
-    public void StopCharacterSound(string clipName)
-    {
+    //public void StopCharacterSound(string clipName)
+    //{
 
-        string playerName = clipName.Split('_')[0];
-        PlayerSounds player = Array.Find(characterSounds, pl => pl.name == playerName);
+    //    string playerName = clipName.Split('_')[0];
+    //    PlayerSounds player = Array.Find(characterSounds, pl => pl.name == playerName);
 
-        if (player != null)
-        {
-            foreach (SoundClass sound in player.personalEffect)
-            {
-                if (sound.clipName == clipName)
-                {
-                    sound.source.Stop();
-                    return;
-                }
-            }
-        }
+    //    if (player != null)
+    //    {
+    //        foreach (SoundClass sound in player.personalEffect)
+    //        {
+    //            if (sound.clipName == clipName)
+    //            {
+    //                sound.source.Stop();
+    //                return;
+    //            }
+    //        }
+    //    }
 
-        Debug.LogWarning("Clip: " + clipName + " not found. Check the name");
-        return;
-    }
+    //    Debug.LogWarning("Clip: " + clipName + " not found. Check the name");
+    //    return;
+    //}
 }

@@ -49,7 +49,6 @@ public class ElementManager : MonoBehaviour
         if(timer > scanTime)
         {
             timer = 0;
-            Debug.Log("START");
             if(countGreen == 0 || countBlack == 0)
             {
                 //TODO: lose
@@ -57,7 +56,6 @@ public class ElementManager : MonoBehaviour
 
             if(percentBlack < minPercentBlack)
             {
-                Debug.Log("PercentBlack " + percentBlack + " if Update");
                 RandomSpawn(StateColor.CL_BLACK);
             }
             if(percentGreen < minPercentGreen)
