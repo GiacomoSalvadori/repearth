@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator VisualizeDialogue(CharacterDialogue dialogue)
     {
-        SetName(dialogue.character.name);
+        SetName(dialogue.character.chName);
         SetImage(dialogue.character.img);
         int pieceIndex = 0;
         while (pieceIndex < dialogue.pieces.Count) {
