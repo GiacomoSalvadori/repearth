@@ -2366,6 +2366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1801131834}
   - component: {fileID: 1801131833}
+  - component: {fileID: 1801131835}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Untagged
@@ -2436,6 +2437,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1801131835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801131832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76502efe1215f3a49a997cf571f9abdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
 --- !u!1 &1842872427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,6 +2651,7 @@ MonoBehaviour:
   spawnTimeGreen: 8
   spawnTimeBlack: 5
   timeToGrey: 1
+  StartGameBlack: 0
   countBlack: 0
   percentBlack: 0
   countGreen: 0
