@@ -2368,6 +2368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSys: {fileID: 884166093}
+  clickEfx: {fileID: 180820, guid: a07608802ac497743a7f19f6633fdd70, type: 3}
   volcanoAnimator: {fileID: 941912549}
 --- !u!114 &1132657909
 MonoBehaviour:

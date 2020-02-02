@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class LavaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public ParticleSystem particleSys;
+    public GameObject clickEfx;
     [SerializeField] Animator volcanoAnimator;
     private ParticleSystem.EmissionModule particleEmission;
     private ParticleSystem.CollisionModule particleCollision;
@@ -33,6 +34,9 @@ public class LavaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = 0.0f;
+        Instantiate(clickEfx, pos, clickEfx.transform.rotation);
         if (canClick && !UIactive)
         {
             volcanoAnimator.SetBool("isErupting", true);
