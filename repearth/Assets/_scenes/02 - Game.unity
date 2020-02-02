@@ -2562,7 +2562,7 @@ MonoBehaviour:
   minPercentGreen: 5
   spawnTimeGreen: 8
   spawnTimeBlack: 5
-  timeToGrey: 0
+  timeToGrey: 1
   countBlack: 0
   percentBlack: 0
   countGreen: 0

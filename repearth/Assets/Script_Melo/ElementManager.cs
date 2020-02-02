@@ -29,40 +29,39 @@ public class ElementManager : MonoBehaviour
     [Header("GREEN")]
     public int countGreen;
     public float percentGreen;
-
     private float timer;
-
+    private bool startGame;
+    
     // Start is called before the first frame update
     void Start()
     {
+        startGame = false;
         GetPoints();
         countBlack = 0;
         countGreen = 0;
         timer = scanTime - 0.3f;
-
+        FindObjectOfType<DialogueManager>().OnCloseWindow += EnableEconomy;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if(timer > scanTime)
-        {
-            timer = 0;
-            if(countGreen == 0 || countBlack == 0)
-            {
-                //TODO: lose
-            }
+        if (startGame) {
+            timer += Time.deltaTime;
+            if (timer > scanTime) {
+                timer = 0;
+                if (countGreen == 0 || countBlack == 0) {
+                    //TODO: lose
+                }
 
-            if(percentBlack < minPercentBlack)
-            {
-                RandomSpawn(StateColor.CL_BLACK);
-            }
-            if(percentGreen < minPercentGreen)
-            {
-                RandomSpawn(StateColor.CL_GREEN);
-            }
-            CountBlackGreen();
+                if (percentBlack < minPercentBlack) {
+                    RandomSpawn(StateColor.CL_BLACK);
+                }
+                if (percentGreen < minPercentGreen) {
+                    RandomSpawn(StateColor.CL_GREEN);
+                }
+                CountBlackGreen();
+            } 
         }
     }
 
@@ -167,5 +166,10 @@ public class ElementManager : MonoBehaviour
         percentBlack = ((float)countBlack / numberOfObjects) * 100;
         percentGreen = ((float)countGreen / numberOfObjects) * 100;
 
+    }
+
+    private void EnableEconomy()
+    {
+        startGame = true;
     }
 }

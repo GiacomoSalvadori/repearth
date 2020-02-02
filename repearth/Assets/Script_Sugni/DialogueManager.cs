@@ -24,11 +24,14 @@ public class DialogueManager : MonoBehaviour
         nextPiece = false;
     }
 
+    private void Start()
+    {
+        StartDialogue(d);
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) {
-            StartDialogue(d);
-        }
+
     }
 
     public void OnWindowClick()
