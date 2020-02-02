@@ -37,7 +37,7 @@ public class LavaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             volcanoAnimator.SetBool("isErupting", true);
             particleEmission.enabled = true;
-            particleCollision.dampen = 0;
+            particleCollision.dampen = 0.025f;
         }
     }
 
