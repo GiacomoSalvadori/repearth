@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,6 +59,7 @@ public class ElementManager : MonoBehaviour
 
             if(percentBlack < minPercentBlack)
             {
+                Debug.Log("PercentBlack " + percentBlack + " if Update");
                 RandomSpawn(StateColor.CL_BLACK);
             }
             if(percentGreen < minPercentGreen)
@@ -70,7 +72,8 @@ public class ElementManager : MonoBehaviour
 
     void RandomSpawn(StateColor colorToSpawn)
     {
-        int index = Random.Range(0, nodes.Count);
+        System.Random rnd = new System.Random(Guid.NewGuid().GetHashCode());
+        int index = rnd.Next(0, nodes.Count);
 
         UpdateState state = null;
         if(nodes[index].GetComponent<UpdateState>())
@@ -83,6 +86,7 @@ public class ElementManager : MonoBehaviour
             case StateColor.CL_BLACK:
                 if (state.state == StateColor.CL_GREEN)
                 {
+                    Debug.Log("SPAWN BLACK");
                     state.SetColor(colorToSpawn);
                 }
                 break;

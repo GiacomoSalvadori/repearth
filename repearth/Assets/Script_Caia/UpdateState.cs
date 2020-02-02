@@ -18,6 +18,9 @@ public class UpdateState : MonoBehaviour
 
     private SpriteRenderer sprite;
     private bool isCall;
+
+    private float timer;
+
     public ParticleManager greenParticles;
     public ParticleManager blackParticles;
 
@@ -31,19 +34,34 @@ public class UpdateState : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         isCall = false;
         SetColor(StateColor.CL_GREEN);
+        timer = 0;
         //child = this.gameObject.transform.GetComponentInChildren<ParticleManager>();
     }
     
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+
         transform.RotateAround(new Vector3(0,0,0), Vector3.forward, rotationSpeed * Time.deltaTime);
-        if (!isCall && state!=StateColor.CL_GREY)
+
+        switch (state)
         {
-            isCall = true;
-            StartCoroutine(UpdateColor(state));
+            case StateColor.CL_BLACK:
+                if (timer > spawnTimeBlack)
+                {
+                    timer = 0;
+                    StartCoroutine(UpdateColor(state));
+                }
+                break;
+            case StateColor.CL_GREEN:
+                if (timer > spawnTimeGreen)
+                {
+                    timer = 0;
+                    StartCoroutine(UpdateColor(state));
+                }
+                break;
         }
-         
     }
 
     IEnumerator UpdateColor(StateColor state)
@@ -81,22 +99,6 @@ public class UpdateState : MonoBehaviour
     {
         state = newState;
         sprite.color = rules.RetrieveHex(newState);
-
-        //if(newState == StateColor.CL_GREEN)
-        //{
-        //    blackParticles.gameObject.SetActive(false);
-        //    greenParticles.gameObject.SetActive(true);
-        //}
-        //else if(newState == StateColor.CL_BLACK)
-        //{
-        //    greenParticles.gameObject.SetActive(false);
-        //    blackParticles.gameObject.SetActive(true);
-        //}
-        //else
-        //{
-        //    greenParticles.gameObject.SetActive(false);
-        //    blackParticles.gameObject.SetActive(false);
-        //}
     }
 
     private void OnParticleCollision(GameObject other)
