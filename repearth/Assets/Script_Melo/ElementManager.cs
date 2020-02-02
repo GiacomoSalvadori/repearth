@@ -35,9 +35,6 @@ public class ElementManager : MonoBehaviour
     void Start()
     {
         GetPoints();
-
-        centerY = 0;
-        centerX = 0;
         countBlack = 0;
         countGreen = 0;
         timer = scanTime - 0.3f;
