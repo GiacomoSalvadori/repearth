@@ -1076,8 +1076,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 750, y: 1334}
+  m_AnchoredPosition: {x: 0, y: 80.1}
+  m_SizeDelta: {x: 750, y: 820}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1132657908
 MonoBehaviour:
@@ -1093,6 +1093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSys: {fileID: 884166093}
   volcanoAnimator: {fileID: 941912549}
+  canClick: 0
 --- !u!114 &1132657909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,6 +1815,8 @@ MonoBehaviour:
   scanTime: 5
   minPercentBlack: 5
   minPercentGreen: 5
+  spawnTimeGreen: 0
+  spawnTimeBlack: 0
   countBlack: 0
   percentBlack: 0
   countGreen: 0

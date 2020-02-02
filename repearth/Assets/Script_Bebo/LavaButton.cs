@@ -11,22 +11,29 @@ public class LavaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private ParticleSystem.CollisionModule particleCollision;
 
     private bool canClick;
+    private bool UIactive;
 
     private void Awake()
     {
+        DialogueManager dm = FindObjectOfType<DialogueManager>();
+        dm.OnOpenWindow += DisableInput;
+        dm.OnCloseWindow += EnableInput;
         canClick = true;
+        UIactive = false;
         particleEmission = particleSys.emission;
         particleCollision = particleSys.collision;
     }
 
     private void Update()
     {
-        canClick = particleSys.particleCount <= 0 ? true : false;
+        if (!UIactive) {
+            canClick = particleSys.particleCount <= 0 ? true : false;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (canClick)
+        if (canClick && !UIactive)
         {
             volcanoAnimator.SetBool("isErupting", true);
             particleEmission.enabled = true;
@@ -36,9 +43,22 @@ public class LavaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        canClick = false;
-        volcanoAnimator.SetBool("isErupting", false);
-        particleEmission.enabled = false;
-        particleCollision.dampen = 0.2f;
+        if (!UIactive) {
+            canClick = false;
+            volcanoAnimator.SetBool("isErupting", false);
+            particleEmission.enabled = false;
+            particleCollision.dampen = 0.2f;
+        }
+    }
+
+    private void DisableInput()
+    {
+        Debug.Log("disable input");
+        UIactive = true;
+    }
+
+    private void EnableInput()
+    {
+        UIactive = false;
     }
 }
