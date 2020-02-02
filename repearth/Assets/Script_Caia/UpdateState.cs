@@ -29,9 +29,13 @@ public class UpdateState : MonoBehaviour
 
     public int rotationSpeed = 10;
 
+    private FxManager fxManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        
+        fxManager = transform.Find("FX").GetComponent<FxManager>();
         startExpansion = false;
         GameObject.FindObjectOfType<ElementManager>().OnGameReady += Go;
         sprite = GetComponent<SpriteRenderer>();
@@ -87,10 +91,10 @@ public class UpdateState : MonoBehaviour
             yield return new WaitForSeconds(spawnTimeBlack);
 
 
-        if (checkIfUpdate(backNode))
+        if (checkIfUpdate(backNode) && backNode.GetComponent<UpdateState>().state != state)
             backNode.GetComponent<UpdateState>().SetColor(state);
         //StartCoroutine(backNode.GetComponent<UpdateState>().SetColor(state));
-        if (checkIfUpdate(nextNode))
+        if (checkIfUpdate(nextNode) && nextNode.GetComponent<UpdateState>().state != state)
             nextNode.GetComponent<UpdateState>().SetColor(state);
             //StartCoroutine(nextNode.GetComponent<UpdateState>().SetColor(state));
 
@@ -109,12 +113,20 @@ public class UpdateState : MonoBehaviour
 
     public void SetColor(StateColor newState)
     {
+        if(state == StateColor.CL_GREY && newState == StateColor.CL_GREEN)
+            fxManager.SwitchFX(newState);
+        else if((state == StateColor.CL_GREEN || state == StateColor.CL_GREY) && newState == StateColor.CL_BLACK)
+            fxManager.SwitchFX(newState);
+        else if(newState == StateColor.CL_GREY)
+            fxManager.SwitchFX(newState);
+
         state = newState;
         //sprite.color = rules.RetrieveHex(newState);
         if (newState != StateColor.CL_RED)
             sprite.DOColor(rules.RetrieveHex(newState), 1.5f);
         else
             sprite.color = rules.RetrieveHex(newState);
+
     }
 
 
