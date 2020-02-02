@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 436683855}
   - component: {fileID: 436683854}
   m_Layer: 0
-  m_Name: Cloud2 (1)
+  m_Name: Cloud2_transparent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 495164003}
   - component: {fileID: 495164002}
   m_Layer: 0
-  m_Name: Cloud3 (1)
+  m_Name: Cloud3_transparent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2382,7 +2382,7 @@ GameObject:
   - component: {fileID: 1934738697}
   - component: {fileID: 1934738696}
   m_Layer: 0
-  m_Name: Cloud1 (1)
+  m_Name: Cloud1_transparent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
