@@ -10,6 +10,8 @@ public class GameFlowController : MonoBehaviour
     #region Properties
     public int actualScene;
     public int previousScene;
+    public GameObject UIMobile;
+    public GameObject UIDesktop;
     public delegate void FlowChange();
     public FlowChange OnEndGame;
     public FlowChange OnLoading;
@@ -27,6 +29,13 @@ public class GameFlowController : MonoBehaviour
         started = true;
         actualScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.sceneLoaded += OnChangeScene;
+        UIMobile.SetActive(false);
+        UIDesktop.SetActive(false);
+        if (PlatformInstance.IsMobile()) {
+            UIMobile.SetActive(true);
+        } else {
+            UIDesktop.SetActive(true);
+        }
     }
 
     private void Start()
