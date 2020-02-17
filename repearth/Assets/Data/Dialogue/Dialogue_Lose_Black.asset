@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
   pieces:
-  - Oh no!
-  - The Earth decides to destroy the most miserable species ever exists!
+  - message: Oh no! Tower control! Tower control!
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  - message: Do you hear me?
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  - message: '[NO SIGNAL]'
+    speaker: {fileID: 11400000, guid: 46d80181aa62d7941a16e5ea9e6905ba, type: 2}
+  - message: 'The Earth decides to destroy the most miserable species ever exists! '
+    speaker: {fileID: 0}

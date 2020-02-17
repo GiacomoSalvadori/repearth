@@ -14,9 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
   pieces:
-  - The planet is fantastic from here!
-  - But the situation down there is not the same...
-  - Our Earth is angry...
-  - We are like parasites to her, we are destroying the natural balance of the things...
-  - Will the Earth forgive us? Will it restore the balance for us?
-  - Or will it brings us to extinction?
+  - message: Major! Major! Do you hear me?
+    speaker: {fileID: 11400000, guid: 46d80181aa62d7941a16e5ea9e6905ba, type: 2}
+  - message: Major here! I hear you loud and clear.
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  - message: Are you near by the vulcano? Can you understand what is going on?
+    speaker: {fileID: 11400000, guid: 46d80181aa62d7941a16e5ea9e6905ba, type: 2}
+  - message: That volcano could destroy our civilization in every moment...
+    speaker: {fileID: 11400000, guid: 46d80181aa62d7941a16e5ea9e6905ba, type: 2}
+  - message: The planet is fantastic from here!
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  - message: Major?!?! What are you saying?
+    speaker: {fileID: 11400000, guid: 46d80181aa62d7941a16e5ea9e6905ba, type: 2}
+  - message: Our earth is angry... we are parasite to her...
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  - message: Major, are you ok?
+    speaker: {fileID: 11400000, guid: 46d80181aa62d7941a16e5ea9e6905ba, type: 2}
+  - message: Oh giant volcano, are you the bringer of balance?
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  - message: Will you destroy us? Will you destroy the entire planet?
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  - message: For how many time will you keep in balance the black parasite and the
+      green forests?
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}

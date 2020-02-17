@@ -79,8 +79,9 @@ public class DialogueManager : MonoBehaviour
         dialogueWindow.SetActive(false);
     }
 
-    private void SetImage(Sprite img)
+    private void SetImage(Sprite img, bool useAnimator)
     {
+        imgContainer.GetComponent<Animator>().enabled = useAnimator;
         imgContainer.GetComponent<Image>().sprite = img;
     }
 
@@ -103,12 +104,12 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator VisualizeDialogue(CharacterDialogue dialogue)
     {
-        SetName(dialogue.character.chName);
-        SetImage(dialogue.character.img);
         int pieceIndex = 0;
         while (pieceIndex < dialogue.pieces.Count) {
             nextPiece = false;
-            SetDialogueText(dialogue.pieces[pieceIndex]);
+            SetName(dialogue.pieces[pieceIndex].speaker.chName);
+            SetImage(dialogue.pieces[pieceIndex].speaker.img, dialogue.pieces[pieceIndex].speaker.useAnimator);
+            SetDialogueText(dialogue.pieces[pieceIndex].message);
             yield return new WaitUntil(() => nextPiece);
             pieceIndex++;
         }

@@ -8,6 +8,7 @@ public class GameCharacter : ScriptableObject
     #region Values
     public Sprite img;
     public string chName;
+    public bool useAnimator = false;
     #endregion
 
     void Start()

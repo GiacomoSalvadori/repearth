@@ -14,5 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
   pieces:
-  - Oh no!
-  - There is only one type of life left on the Earth!
+  - message: Oh no! Tower control! Tower control!
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  - message: What is going on? Everything is in flame from here!
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}
+  - message: Major Tom, the volcano destroys all the life forms...
+    speaker: {fileID: 11400000, guid: 46d80181aa62d7941a16e5ea9e6905ba, type: 2}
+  - message: Excepts for one...
+    speaker: {fileID: 11400000, guid: 46d80181aa62d7941a16e5ea9e6905ba, type: 2}
+  - message: There is only smoke and tar from here...
+    speaker: {fileID: 11400000, guid: 570bbd44507aa1646bfc2e27be89a14b, type: 2}

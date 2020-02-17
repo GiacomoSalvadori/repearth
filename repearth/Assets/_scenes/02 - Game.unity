@@ -6012,9 +6012,9 @@ MonoBehaviour:
   centerY: -0.17
   scanTime: 1
   minPercentBlack: 5
-  minPercentGreen: 5
+  minPercentGreen: 10
   spawnTimeGreen: 8
-  spawnTimeBlack: 5
+  spawnTimeBlack: 4
   timeToGrey: 1
   StartGameBlack: 2
   countBlack: 0
