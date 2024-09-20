@@ -64,3 +64,19 @@ The following packages were updated:
   com.unity.timeline from version 1.1.0 to 1.7.6
 The following packages were removed:
   com.unity.package-manager-ui@2.2.0
+
+=== Fri Sep 20 10:47:11 2024
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 2.3.1 to 2.4.3
+
+=== Fri Sep 20 15:02:22 2024
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 2.4.3 to 2.5.1
