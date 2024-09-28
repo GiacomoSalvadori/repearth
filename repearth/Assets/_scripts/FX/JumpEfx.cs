@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.Collections;
 
 public class JumpEfx : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class JumpEfx : MonoBehaviour
     public float targetMobile = 180.0f;
     public float targetDesktop = 190.0f;
     RectTransform rt;
+    
+    public int screenSizeReference = 1080;
     #endregion
 
     private void Awake()
@@ -22,6 +25,13 @@ public class JumpEfx : MonoBehaviour
     {
         float target = PlatformInstance.IsMobile() ? targetMobile : targetDesktop;
         Debug.Log("target "+target);
-        rt.DOAnchorPosY(target, 1.0f, false).SetLoops(-1, LoopType.Yoyo);
+        var endValue = target * GetTargetMultiplier();
+        rt.DOAnchorPosY(endValue, 1.0f, false).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private float GetTargetMultiplier()
+    {
+        var screenHeight = Screen.height;
+        return (float)screenHeight / screenSizeReference;
     }
 }
